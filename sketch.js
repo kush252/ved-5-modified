@@ -8,7 +8,7 @@ var Play=0
 var Level2=2
 var Lose=3
 var Win=4
-var GameState=Play 
+var GameState=Start 
 var life=3;
 var score2=0;
 var dorasc=0
@@ -81,12 +81,12 @@ function setup() {
 
   bkground1=createSprite(width/2+450,height/2,20,20);
   bkground1.addImage(bg3Img);
-  bkground1.scale=1.62;
+  bkground1.scale=1.69;
   bkground1.visible=false
 
   bkground2=createSprite(width/2+3000,height/2+3,20,20);
   bkground2.addImage(bg5Img);
-  bkground2.scale=1.62;
+  bkground2.scale=1.69;
   bkground2.visible=false
 
   doraemon= createSprite(width/2-565,height/2+230,20,50);
@@ -416,7 +416,21 @@ function setup() {
 }
 function draw() {
   level2function()
+  camera.velocityX=-5;
+  bkground1.velocityX=-5;
+  bkground2.velocityX=-5;
+  
 
+  
+  
+  if(bkground1.x<width-2865)
+  {
+    bkground1.x=width/2+3000
+  }
+  if(bkground2.x<width-2865)
+  {
+    bkground2.x=width/2+3000
+  }
 
   if(GameState===Start)
   {
@@ -428,7 +442,7 @@ function draw() {
  {
   GameState=Play
   frameCount=1
-  gamesound.play()
+  //gamesound.play()
  }
 
  if(mousePressedOver(ins))
@@ -456,13 +470,18 @@ function draw() {
 
   if(GameState===Play)
   {
-background("green")
-
+    background(189); 
+   //s image(backgroundImg, 0, 0, width, height); 
+    if (!gamesound.isPlaying()) 
+    { 
+      gamesound.play(); 
+      gamesound.setVolume(0.2);
+    } 
 Playvisible()
-camera.velocityX=-5;
+/*camera.velocityX=-5;
 bkground1.velocityX=-5;
 bkground2.velocityX=-5;
-
+*/
 doraemon.visible=true;
 ins2.visible=false;
 cross.visible=false;
@@ -474,14 +493,14 @@ about.visible=false
 //gamesound.
 
 
-if(bkground1.x<width-2865)
+/*if(bkground1.x<width-2865)
 {
   bkground1.x=width/2+3000
 }
 if(bkground2.x<width-2865)
 {
   bkground2.x=width/2+3000
-}
+}*/
 
 doraemon.velocityY = doraemon.velocityY + 0.4;
 
